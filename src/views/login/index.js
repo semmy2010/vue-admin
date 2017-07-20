@@ -1,13 +1,12 @@
 //@flow
-import * as Vue from "vue";
-import { mapState } from "vuex";
-import Component from "vue-class-component";
-import './view.html';
+import Vue from 'vue';
+import { mapState } from 'vuex';
+import Component from 'vue-class-component';
+import api from '../../api';
 import './style.scss';
-import { requestLogin } from '../api/api';
 
-@Component({ name: 'Login' })
-export default class Login extends VUe {
+@Component({ name: 'Login', template: require('./view.html') })
+export default class Login extends Vue {
     data() {
         return {
             logining: false,
@@ -44,7 +43,7 @@ export default class Login extends VUe {
                     username: this.ruleForm2.account,
                     password: this.ruleForm2.checkPass
                 };
-                requestLogin(loginParams).then(data => {
+                api.requestLogin(loginParams).then(data => {
                     this.logining = false;
                     //NProgress.done();
                     let { msg, code, user } = data;

@@ -1,10 +1,11 @@
 //@flow
-import * as Vue from "vue";
-import { mapState } from "vuex";
-import Component from "vue-class-component";
+import Vue from 'vue';
+import { mapState } from 'vuex';
+import Component from 'vue-class-component';
+import './style.scss';
 
-@Component({ name: 'Home' })
-export default class Home extends VUe {
+@Component({ name: 'Home', template: require('./view.html') })
+export default class Home extends Vue {
     data() {
         return {
             sysName: 'VUEADMIN',

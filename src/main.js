@@ -3,14 +3,12 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import ElementUI from 'element-ui';
-import App from './views/app';
 import 'element-ui/lib/theme-default/index.css';
-//import './assets/theme/theme-green/index.css'
+import 'font-awesome/css/font-awesome.min.css';
+import App from './views/app';
 import store from './store';
-//import NProgress from 'nprogress' import 'nprogress/nprogress.css'
 import routes from './routes';
 import Mock from '../mock';
-import 'font-awesome/css/font-awesome.min.css';
 
 Mock.bootstrap(); //调用正式接口时注释
 

@@ -1,7 +1,6 @@
 var path = require('path');
 var utils = require('./utils');
-var config = require('../config');
-var vueLoaderConfig = require('./vue-loader.conf');
+var config = require('./config');
 
 function resolve(dir) {
     return path.join(__dirname, '..', dir);
@@ -17,24 +16,27 @@ module.exports = {
         publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
     },
     resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.js'
+        },
         extensions: [
             '.js', '.vue', '.json'
-        ],
-        alias: {
-            'vue$': 'vue/dist/vue.esm.js',
-            '@': resolve('src'),
-            'scss_vars': '@/styles/vars.scss'
-        }
+        ]
     },
     module: {
         rules: [{
             test: /\.vue$/,
-            loader: 'vue-loader',
-            options: vueLoaderConfig
+            loader: 'vue-loader'
         }, {
             test: /\.js$/,
             loader: 'babel-loader',
             include: [resolve('src'), resolve('test')]
+        }, {
+            test: /\.html$/,
+            use: ['raw-loader', 'html-minify-loader']
+        }, {
+            test: /\.(css|scss)$/,
+            use: ['style-loader', 'css-loader', 'sass-loader']
         }, {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
             loader: 'url-loader',
